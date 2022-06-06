@@ -1,0 +1,29 @@
+{
+  "name": "page-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --host --port 1770",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainnaZR/page-creator.git"
+  },
+  "author": "fed",
+  "license": "ISC",
+  "dependencies": {
+    "@htfed/base-css": "^1.0.26",
+    "@htfed/ui": "^0.2.91",
+    "@htfed/utils": "^0.1.23",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14",
+    "vxe-table": "^4.2.0",
+    "xe-utils": "^3.5.4"
+  },
+  "bugs": {
+    "url": "https://github.com/rainnaZR/page-creator/issues"
+  },
+  "homepage": "https://github.com/rainnaZR/page-creator#readme"
+}
