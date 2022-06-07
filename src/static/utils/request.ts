@@ -2,7 +2,7 @@ import { request, store } from "@htfed/utils";
 import { HtToast } from "@htfed/ui";
 
 request.init({
-  baseURL: "https://production.api.dahuangf.com/api/base",
+  baseURL: "http://localhost:4029/api/lego",
   reqInterceptor: (config: any) => {
     config.headers = {
       ...config.headers,
