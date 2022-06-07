@@ -11,9 +11,11 @@
       <!-- 内容 -->
       <div class="m-main f-f1">
         <!-- 面包屑 -->
-        <ht-bread-crumb :data="breadCrumbData" />
+        <ht-bread-crumb class="f-mb15" :data="breadCrumbData" />
 
-        <router-view />
+        <div class="m-box">
+          <router-view />
+        </div>
       </div>
     </div>
   </div>
@@ -33,6 +35,7 @@ const breadCrumbData = computed(() => ({
 </script>
 
 <style lang="less" scoped>
+@import "../static/css/variables.less";
 .g-page {
   display: flex;
   flex-direction: column;
@@ -42,6 +45,15 @@ const breadCrumbData = computed(() => ({
     flex: 1;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
+  }
+  .m-main {
+    margin: 15px 20px;
+  }
+  .m-box {
+    padding: 15px;
+    background: @base-color;
+    box-shadow: 0px 0px 6px 0px @light-color;
   }
 }
 </style>
