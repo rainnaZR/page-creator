@@ -9,7 +9,7 @@
       <Sidebar />
 
       <!-- 内容 -->
-      <div class="m-main f-f1">
+      <div class="m-main">
         <!-- 面包屑 -->
         <ht-bread-crumb class="f-mb15" :data="breadCrumbData" />
 
@@ -48,9 +48,15 @@ const breadCrumbData = computed(() => ({
     overflow: hidden;
   }
   .m-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     margin: 15px 20px;
   }
   .m-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 15px;
     background: @base-color;
     box-shadow: 0px 0px 6px 0px @light-color;
