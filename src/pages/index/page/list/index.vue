@@ -4,8 +4,11 @@
 
 <script lang="ts" setup>
 import { reactive } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { onGetPageListXhr, onDeletePageXhr } from "~/service/page";
 
+const $router = useRouter();
+const $route = useRoute();
 const data = reactive({
   request: {
     onGetListXhr: {
@@ -39,7 +42,15 @@ const data = reactive({
       "reset",
     ],
   },
-  toolbar: ["add"],
+  toolbar: [
+    {
+      type: "add",
+      content: "新增页面",
+      onClick: () => {
+        $router.push(`${$route.path}/detail`);
+      },
+    },
+  ],
   table: {
     id: "PageListTable",
     height: "auto",
@@ -78,15 +89,24 @@ const data = reactive({
         field: "createTime",
         sortable: true,
       },
-      // {
-      //   title: "操作",
-      //   width: 180,
-      //   fixed: "right",
-      //   actions: ["detail", "edit", "delete"],
-      // },
+      {
+        title: "操作",
+        width: 180,
+        fixed: "right",
+        actions: [
+          {
+            type: "build",
+            content: "搭建",
+            onClick: (row) => {
+              $router.push(`/build?id=${row.id}`);
+            },
+          },
+          "detail",
+          "edit",
+          "delete",
+        ],
+      },
     ],
   },
 });
-
-const onAction = (value) => alert(`'${value.action.type}'类型按钮点击`);
 </script>
