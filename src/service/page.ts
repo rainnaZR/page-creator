@@ -5,10 +5,10 @@ import { Model } from './types'
 const onGetPageListXhr = (data: Model) => request.get('/page/list', data)
 
 // 删除页面
-const onDeletePageXhr = (data: Model) => request.delete('/page', data)
+const onDeletePageXhr = (data: Model) => request.del('/page', data)
 
 // 页面详情
-const onGetPageDetailXhr = (data: Model) => request.get('/page/detail', data)
+const onGetPageDetailXhr = (data: Model) => request.get('/page', data)
 
 // 新增页面
 const onPostPageXhr = (data: Model) => request.post('/page', data)

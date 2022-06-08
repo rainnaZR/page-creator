@@ -23,7 +23,7 @@ const data = reactive({
   labelWidth: "150px",
   model: {
     title: "",
-    meta: "",
+    description: "",
     expireTime: "",
   },
   fields: [
@@ -39,7 +39,7 @@ const data = reactive({
     },
     {
       type: "input",
-      prop: "meta",
+      prop: "description",
       label: "页面描述",
       itemProps: {
         type: "textarea",
@@ -48,7 +48,7 @@ const data = reactive({
     },
     {
       type: "datePicker",
-      prop: "time",
+      prop: "expireTime",
       label: "过期时间",
     },
   ],

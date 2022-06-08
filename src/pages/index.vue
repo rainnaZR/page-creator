@@ -41,24 +41,22 @@ const breadCrumbData = computed(() => ({
   flex-direction: column;
   height: 100vh;
   background: #eef0f6;
-  .g-main {
+  .g-main,
+  .m-main,
+  .m-box {
     flex: 1;
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
     overflow: hidden;
   }
   .m-main {
-    flex: 1;
-    display: flex;
     flex-direction: column;
     margin: 15px 20px;
   }
   .m-box {
-    flex: 1;
-    display: flex;
     flex-direction: column;
     padding: 20px;
-    box-sizing: border-box;
     background: @base-color;
     box-shadow: 0px 0px 6px 0px @light-color;
   }

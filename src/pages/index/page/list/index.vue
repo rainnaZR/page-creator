@@ -69,7 +69,11 @@ const data = reactive({
         title: "标题",
         field: "title",
         showOverflow: true,
-        sortable: true,
+      },
+      {
+        title: "描述",
+        field: "description",
+        showOverflow: true,
       },
       {
         title: "有效期",
@@ -97,12 +101,28 @@ const data = reactive({
           {
             type: "build",
             content: "搭建",
-            onClick: (row) => {
-              $router.push(`/build?id=${row.id}`);
+            onClick: ({ row = {} }: any) => {
+              const route = $router.resolve(`/build?id=${row.id}`);
+              window.open(route.href, "_blank");
             },
           },
-          "detail",
-          "edit",
+          {
+            type: "detail",
+            content: "预览",
+            onClick: ({ row = {} }: any) => {
+              const route = $router.resolve(`/preview?id=${row.id}`);
+              window.open(route.href, "_blank");
+            },
+          },
+          {
+            type: "edit",
+            content: "编辑",
+            onClick: ({ row = {}, action = {} }: any) => {
+              $router.push(
+                `${$route.path}/detail?type=${action.type}&id=${row.id}`
+              );
+            },
+          },
           "delete",
         ],
       },
