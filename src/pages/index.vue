@@ -57,7 +57,8 @@ const breadCrumbData = computed(() => ({
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 20px;
+    box-sizing: border-box;
     background: @base-color;
     box-shadow: 0px 0px 6px 0px @light-color;
   }

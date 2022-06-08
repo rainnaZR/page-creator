@@ -33,16 +33,17 @@ const currTabValue = computed(() => {
   let path: string = $route.path;
   let tabValue: number[] = [];
   let currentMenuInfo: any[] = [];
-  menuInfo.value.reduce((result: any[]) => {
+  const traverse = (result: any) => {
     if (!result || !result.length) return;
-    let index = result.findIndex((i) => path.startsWith(i.value));
+    let index = result.findIndex((i: any) => path.startsWith(i.value));
     if (index > -1) {
       const menu = result[index];
       tabValue.push(menu.value);
       currentMenuInfo.push(menu);
-      return menu.children;
+      if (menu.children) traverse(menu.children);
     }
-  }, menuInfo.value);
+  };
+  traverse(menuInfo.value);
   setCurrentMenuInfo(currentMenuInfo);
   return tabValue;
 });
