@@ -62,8 +62,8 @@ const data = reactive({
     },
   ],
   request: {
-    formInitial: {
-      xhr: id.value && onGetPageDetailXhr,
+    formInitial: id.value && {
+      xhr: onGetPageDetailXhr,
       getParams: () => ({
         id: id.value,
       }),

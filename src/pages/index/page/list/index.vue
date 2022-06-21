@@ -78,31 +78,28 @@ const data = reactive({
       {
         title: "有效期",
         field: "expireTime",
+        sortable: true,
       },
       {
         title: "操作用户",
         field: "updateUser",
       },
       {
-        title: "更新时间",
+        title: "操作时间",
         field: "updateTime",
         sortable: true,
       },
       {
-        title: "创建时间",
-        field: "createTime",
-        sortable: true,
-      },
-      {
         title: "操作",
-        width: 180,
         fixed: "right",
         actions: [
           {
             type: "build",
             content: "搭建",
             onClick: ({ row = {} }: any) => {
-              const route = $router.resolve(`/build?id=${row.id}`);
+              const route = $router.resolve(
+                `/build?id=${row.id}&isFullScreen=1`
+              );
               window.open(route.href, "_blank");
             },
           },
