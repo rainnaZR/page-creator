@@ -1,14 +1,52 @@
 <template>
-  <ht-table-page :data="data" @on-action="onAction" />
+  <ht-table-page ref="tableRef" :data="data" @on-action="onAction" />
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { getCurrentInstance, ref, reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { onGetPageListXhr, onDeletePageXhr } from "~/service/page";
+import {
+  PAGE_STATUS,
+  PAGE_STATUS_MAP,
+  PAGE_STATUS_OPTIONS,
+} from "~/static/constants";
+import {
+  onGetPageListXhr,
+  onDeletePageXhr,
+  onPutPageStatusXhr,
+} from "~/service/page";
 
 const $router = useRouter();
 const $route = useRoute();
+const { $dialog, $loading, $toast } = getCurrentInstance()?.proxy;
+const tableRef = ref(null);
+
+const onSetStatus = ({ row }: any) => {
+  let status =
+    row.status == PAGE_STATUS.NORMAL ? PAGE_STATUS.INVALID : PAGE_STATUS.NORMAL;
+  $dialog.show({
+    content: `确认${PAGE_STATUS_MAP[status]}当前页面吗？`,
+    onConfirm: async () => {
+      const loading = $loading();
+      try {
+        let result = await onPutPageStatusXhr({
+          id: row.id,
+          status,
+        });
+        loading.close();
+        if (result.code == 200) {
+          $toast.success("操作成功");
+          $dialog.close();
+          tableRef.value?.onReLoadList();
+        }
+      } catch (e) {
+        loading.close();
+        $toast.error("接口请求出错，请稍后再试！");
+      }
+    },
+  });
+};
+
 const data = reactive({
   request: {
     onGetListXhr: {
@@ -33,6 +71,20 @@ const data = reactive({
           clearable: true,
         },
       },
+      {
+        type: "select",
+        label: "页面状态",
+        prop: "status",
+        itemProps: {
+          options: [
+            {
+              label: "全部",
+              value: 0,
+            },
+            ...PAGE_STATUS_OPTIONS,
+          ],
+        },
+      },
     ],
     actions: [
       {
@@ -45,7 +97,7 @@ const data = reactive({
   toolbar: [
     {
       type: "add",
-      content: "新增页面",
+      content: "新增",
       onClick: () => {
         $router.push(`${$route.path}/detail`);
       },
@@ -81,16 +133,22 @@ const data = reactive({
         sortable: true,
       },
       {
+        title: "页面状态",
+        field: "statusName",
+      },
+      {
         title: "操作用户",
         field: "updateUser",
       },
       {
         title: "操作时间",
         field: "updateTime",
+        width: 150,
         sortable: true,
       },
       {
         title: "操作",
+        width: 200,
         fixed: "right",
         actions: [
           {
@@ -110,6 +168,22 @@ const data = reactive({
               const route = $router.resolve(`/preview?id=${row.id}`);
               window.open(route.href, "_blank");
             },
+          },
+          {
+            type: "enabled",
+            content: "生效",
+            show: {
+              status: PAGE_STATUS.INVALID,
+            },
+            onClick: onSetStatus,
+          },
+          {
+            type: "disabled",
+            content: "失效",
+            show: {
+              status: PAGE_STATUS.NORMAL,
+            },
+            onClick: onSetStatus,
           },
           {
             type: "edit",

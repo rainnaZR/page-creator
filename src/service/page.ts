@@ -16,6 +16,8 @@ const onPostPageXhr = (data: Model) => request.post('/page', data)
 // 修改页面
 const onPutPageXhr = (data: Model) => request.put('/page', data)
 
+// 修改页面状态
+const onPutPageStatusXhr = (data: Model) => request.put('/page/status', data)
 
 export {
     onGetPageListXhr,
@@ -23,4 +25,5 @@ export {
     onGetPageDetailXhr,
     onPostPageXhr,
     onPutPageXhr,
+    onPutPageStatusXhr,
 }
