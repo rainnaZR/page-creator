@@ -1,5 +1,5 @@
 <template>
-  <ht-table-page ref="tableRef" :data="data" @on-action="onAction" />
+  <ht-table-page ref="tableRef" :data="data" />
 </template>
 
 <script lang="ts" setup>
@@ -151,9 +151,13 @@ const data = reactive({
             type: "build",
             content: "搭建",
             onClick: ({ row = {} }: any) => {
-              const route = $router.resolve(
-                `/build?id=${row.id}&isFullScreen=1`
-              );
+              const route = $router.resolve({
+                path: "/build",
+                query: {
+                  id: row.id,
+                  isFullScreen: 1,
+                },
+              });
               window.open(route.href, "_blank");
             },
           },
@@ -161,7 +165,12 @@ const data = reactive({
             type: "detail",
             content: "预览",
             onClick: ({ row = {} }: any) => {
-              const route = $router.resolve(`/preview?id=${row.id}`);
+              const route = $router.resolve({
+                path: "/preview",
+                query: {
+                  id: row.id,
+                },
+              });
               window.open(route.href, "_blank");
             },
           },
@@ -185,9 +194,13 @@ const data = reactive({
             type: "edit",
             content: "编辑",
             onClick: ({ row = {}, action = {} }: any) => {
-              $router.push(
-                `${$route.path}/detail?type=${action.type}&id=${row.id}`
-              );
+              $router.push({
+                path: `${$route.path}/detail`,
+                query: {
+                  type: action.type,
+                  id: row.id,
+                },
+              });
             },
           },
           "delete",
