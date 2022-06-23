@@ -2,28 +2,28 @@ import { request } from "~/static/utils";
 import { Model } from '../../types/service'
 
 // 页面列表
-const onGetPageListXhr = (data: Model) => request.get('/page/list', data)
+const onGetListXhr = (data: Model) => request.get('/page/list', data)
 
 // 删除页面
-const onDeletePageXhr = (data: Model) => request.del('/page', data)
+const onDeleteXhr = (data: Model) => request.del('/page', data)
 
 // 页面详情
-const onGetPageDetailXhr = (data: Model) => request.get('/page', data)
+const onGetDetailXhr = (data: Model) => request.get('/page', data)
 
 // 新增页面
-const onPostPageXhr = (data: Model) => request.post('/page', data)
+const onPostXhr = (data: Model) => request.post('/page', data)
 
 // 修改页面
-const onPutPageXhr = (data: Model) => request.put('/page', data)
+const onPutXhr = (data: Model) => request.put('/page', data)
 
 // 修改页面状态
-const onPutPageStatusXhr = (data: Model) => request.put('/page/status', data)
+const onPutStatusXhr = (data: Model) => request.put('/page/status', data)
 
 export {
-    onGetPageListXhr,
-    onDeletePageXhr,
-    onGetPageDetailXhr,
-    onPostPageXhr,
-    onPutPageXhr,
-    onPutPageStatusXhr,
+    onGetListXhr,
+    onDeleteXhr,
+    onGetDetailXhr,
+    onPostXhr,
+    onPutXhr,
+    onPutStatusXhr,
 }

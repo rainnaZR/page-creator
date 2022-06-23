@@ -10,11 +10,7 @@ import {
   PAGE_STATUS_MAP,
   PAGE_STATUS_OPTIONS,
 } from "~/static/constants";
-import {
-  onGetPageListXhr,
-  onDeletePageXhr,
-  onPutPageStatusXhr,
-} from "~/service/page";
+import { onPutStatusXhr, onGetListXhr, onDeleteXhr } from "~/service/page";
 
 const $router = useRouter();
 const $route = useRoute();
@@ -29,7 +25,7 @@ const onSetStatus = ({ row }: any) => {
     onConfirm: async () => {
       const loading = $loading();
       try {
-        let result = await onPutPageStatusXhr({
+        let result = await onPutStatusXhr({
           id: row.id,
           status,
         });
@@ -50,10 +46,10 @@ const onSetStatus = ({ row }: any) => {
 const data = reactive({
   request: {
     onGetListXhr: {
-      xhr: onGetPageListXhr,
+      xhr: onGetListXhr,
     },
     onDeleteXhr: {
-      xhr: onDeletePageXhr,
+      xhr: onDeleteXhr,
     },
   },
   filterForm: {
@@ -65,7 +61,7 @@ const data = reactive({
     fields: [
       {
         type: "input",
-        label: "页面名称",
+        label: "页面标题",
         prop: "title",
         itemProps: {
           clearable: true,

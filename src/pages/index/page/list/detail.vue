@@ -5,11 +5,7 @@
 <script lang="ts" setup>
 import { computed, reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import {
-  onGetPageDetailXhr,
-  onPostPageXhr,
-  onPutPageXhr,
-} from "~/service/page";
+import { onGetDetailXhr, onPostXhr, onPutXhr } from "~/service/page";
 
 const $route = useRoute();
 const $router = useRouter();
@@ -63,13 +59,13 @@ const data = reactive({
   ],
   request: {
     formInitial: id.value && {
-      xhr: onGetPageDetailXhr,
+      xhr: onGetDetailXhr,
       getParams: () => ({
         id: id.value,
       }),
     },
     formSubmit: {
-      xhr: id.value ? onPutPageXhr : onPostPageXhr,
+      xhr: id.value ? onPutXhr : onPostXhr,
       callback: ({ response = {} }: any) => {
         if (response.code === 200) {
           $router.go(-1);
