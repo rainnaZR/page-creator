@@ -143,7 +143,7 @@ const data = reactive({
       {
         title: "操作时间",
         field: "updateTime",
-        width: 150,
+        minWidth: 150,
         sortable: true,
       },
       {

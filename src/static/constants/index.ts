@@ -9,6 +9,6 @@ export const PAGE_STATUS_MAP = {
 };
 
 export const PAGE_STATUS_OPTIONS = Object.keys(PAGE_STATUS_MAP).map((key) => ({
-  value: key,
+  value: ~~key,
   label: PAGE_STATUS_MAP[key],
 }));
