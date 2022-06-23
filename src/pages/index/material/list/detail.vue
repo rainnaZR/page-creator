@@ -39,6 +39,21 @@ const data = reactive({
       },
     },
     {
+      type: "select",
+      prop: "categoryId",
+      label: "物料分类",
+      required: true,
+    },
+    {
+      type: "input",
+      prop: "componentName",
+      label: "物料组件名",
+      required: true,
+      itemProps: {
+        clearable: true,
+      },
+    },
+    {
       type: "input",
       prop: "description",
       label: "物料描述",
@@ -52,28 +67,13 @@ const data = reactive({
       prop: "thumbImg",
       label: "物料缩略图",
       itemProps: {
-        width: 200,
-        height: 200,
+        width: 240,
+        height: 160,
         hideFileName: true,
         limit: 1,
         accept: "images/*",
         action: UPLOAD_ACTION,
         imgDomain: UPLOAD_IMG_DOMAIN,
-      },
-    },
-    {
-      type: "select",
-      prop: "categoryId",
-      label: "物料分类",
-      required: true,
-    },
-    {
-      type: "input",
-      prop: "componentName",
-      label: "组件名",
-      required: true,
-      itemProps: {
-        clearable: true,
       },
     },
     {
@@ -103,7 +103,7 @@ const data = reactive({
     },
   ],
   request: {
-    formInitial: id.value && {
+    formInitial: {
       xhr: onGetDetailXhr,
       getParams: () => ({
         id: id.value,

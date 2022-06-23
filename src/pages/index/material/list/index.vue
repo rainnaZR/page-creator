@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { onGetListXhr, onDeleteXhr } from "~/service/material";
+import { onGetListXhr, onDeleteXhr, onGetDetailXhr } from "~/service/material";
 
 const $router = useRouter();
 const $route = useRoute();
@@ -19,6 +19,11 @@ const data = reactive({
     },
   },
   filterForm: {
+    request: {
+      formInitial: {
+        xhr: onGetDetailXhr,
+      },
+    },
     hideLoading: true,
     inline: true,
     model: {
@@ -83,10 +88,11 @@ const data = reactive({
       {
         title: "缩略图",
         field: "thumbImg",
+        minWidth: 140,
         showConfig: {
           type: "image",
-          imgWidth: 100,
-          imgHeight: 100,
+          imgWidth: 120,
+          imgHeight: 80,
         },
       },
       {
@@ -95,7 +101,7 @@ const data = reactive({
       },
       {
         title: "组件名",
-        field: "categoryName",
+        field: "componentName",
       },
       {
         title: "维护人",
@@ -109,7 +115,6 @@ const data = reactive({
       {
         title: "操作用户",
         field: "updateUser",
-        minWidth: 100,
       },
       {
         title: "操作时间",
@@ -120,6 +125,7 @@ const data = reactive({
       {
         title: "操作",
         fixed: "right",
+        minWidth: 100,
         actions: [
           {
             type: "edit",

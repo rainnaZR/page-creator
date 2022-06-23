@@ -16,10 +16,30 @@ const onPostXhr = (data: Model) => request.post('/material', data)
 // 修改
 const onPutXhr = (data: Model) => request.put('/material', data)
 
+// 分类列表
+const onGetCategoryListXhr = (data: Model) => request.get('/material/category/list', data)
+
+// 分类删除
+const onDeleteCategoryXhr = (data: Model) => request.del('/material/category', data)
+
+// 分类详情
+const onGetCategoryDetailXhr = (data: Model) => request.get('/material/category', data)
+
+// 分类新增
+const onPostCategoryXhr = (data: Model) => request.post('/material/category', data)
+
+// 分类修改
+const onPutCategoryXhr = (data: Model) => request.put('/material/category', data)
+
 export {
     onGetListXhr,
     onDeleteXhr,
     onGetDetailXhr,
     onPostXhr,
     onPutXhr,
+    onGetCategoryListXhr,
+    onDeleteCategoryXhr,
+    onGetCategoryDetailXhr,
+    onPostCategoryXhr,
+    onPutCategoryXhr,
 }

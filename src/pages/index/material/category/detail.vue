@@ -29,7 +29,7 @@ const data = reactive({
     {
       type: "input",
       prop: "title",
-      label: "物料分类标题",
+      label: "分类标题",
       required: true,
       itemProps: {
         clearable: true,
@@ -39,7 +39,7 @@ const data = reactive({
     {
       type: "input",
       prop: "description",
-      label: "物料分类描述",
+      label: "分类描述",
       itemProps: {
         type: "textarea",
         maxLength: 1000,
