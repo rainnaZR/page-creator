@@ -1,22 +1,22 @@
 import { request } from "~/static/utils";
 import { Model } from '../../types/service'
 
-// 页面列表
+// 列表
 const onGetListXhr = (data: Model) => request.get('/page/list', data)
 
-// 删除页面
+// 删除
 const onDeleteXhr = (data: Model) => request.del('/page', data)
 
-// 页面详情
+// 详情
 const onGetDetailXhr = (data: Model) => request.get('/page', data)
 
-// 新增页面
+// 新增
 const onPostXhr = (data: Model) => request.post('/page', data)
 
-// 修改页面
+// 修改
 const onPutXhr = (data: Model) => request.put('/page', data)
 
-// 修改页面状态
+// 修改状态
 const onPutStatusXhr = (data: Model) => request.put('/page/status', data)
 
 export {
