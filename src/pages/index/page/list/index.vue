@@ -9,7 +9,7 @@ import {
   PAGE_STATUS,
   PAGE_STATUS_MAP,
   PAGE_STATUS_OPTIONS,
-} from "~/static/constants";
+} from "~/static/constants/page";
 import { onPutStatusXhr, onGetListXhr, onDeleteXhr } from "~/service/page";
 
 const $router = useRouter();

@@ -5,47 +5,18 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { onGetListXhr, onDeleteXhr } from "~/service/material";
+import { onGetCategoryListXhr, onDeleteCategoryXhr } from "~/service/material";
 
 const $router = useRouter();
 const $route = useRoute();
 const data = reactive({
   request: {
     onGetListXhr: {
-      xhr: onGetListXhr,
+      xhr: onGetCategoryListXhr,
     },
     onDeleteXhr: {
-      xhr: onDeleteXhr,
+      xhr: onDeleteCategoryXhr,
     },
-  },
-  filterForm: {
-    hideLoading: true,
-    inline: true,
-    model: {
-      title: "",
-    },
-    fields: [
-      {
-        type: "input",
-        label: "物料标题",
-        prop: "title",
-        itemProps: {
-          clearable: true,
-        },
-      },
-      {
-        type: "select",
-        label: "物料分类",
-        prop: "categoryId",
-      },
-    ],
-    actions: [
-      {
-        type: "submit",
-        content: "搜索",
-      },
-      "reset",
-    ],
   },
   toolbar: [
     {
@@ -57,7 +28,7 @@ const data = reactive({
     },
   ],
   table: {
-    id: "MaterialListTable",
+    id: "MaterialCategoryListTable",
     height: "auto",
     size: "small",
     autoResize: true,
@@ -79,32 +50,6 @@ const data = reactive({
         title: "描述",
         field: "description",
         showOverflow: true,
-      },
-      {
-        title: "缩略图",
-        field: "thumbImg",
-        showConfig: {
-          type: "image",
-          imgWidth: 100,
-          imgHeight: 100,
-        },
-      },
-      {
-        title: "分类",
-        field: "categoryName",
-      },
-      {
-        title: "组件名",
-        field: "categoryName",
-      },
-      {
-        title: "维护人",
-        field: "maintainUser",
-      },
-      {
-        title: "版本号",
-        field: "version",
-        sortable: true,
       },
       {
         title: "操作用户",
