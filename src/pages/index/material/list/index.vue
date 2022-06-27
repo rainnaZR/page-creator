@@ -91,8 +91,8 @@ const data = reactive({
         minWidth: 140,
         showConfig: {
           type: "image",
-          imgWidth: 120,
-          imgHeight: 80,
+          imgWidth: 90,
+          imgHeight: 60,
         },
       },
       {
