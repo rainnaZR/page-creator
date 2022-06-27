@@ -1,9 +1,9 @@
 <template>
   <div class="m-topbar">
     <!-- logo -->
-    <div class="f-df f-curp" @click="onClickLogo">
+    <div class="f-df f-aic f-curp" @click="onClickLogo">
       <ht-image :data="logoData" />
-      <h1 class="f-ml10 f-fs18 s-fc0">{{ logoData.alt }}</h1>
+      <h1 class="f-ml10 f-fs16 s-fc0">{{ logoData.alt }}</h1>
     </div>
 
     <div class="f-f1 tools">
