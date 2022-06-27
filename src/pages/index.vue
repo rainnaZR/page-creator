@@ -59,6 +59,7 @@ const breadCrumbData = computed(() => ({
     padding: 20px 20px 40px;
     background: @base-color;
     box-shadow: 0px 0px 6px 0px @light-color;
+    overflow-y: scroll;
   }
 }
 </style>

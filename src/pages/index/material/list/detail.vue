@@ -78,6 +78,30 @@ const data = reactive({
     },
     {
       type: "input",
+      prop: "styleConfig",
+      label: "样式配置",
+      itemProps: {
+        type: "textarea",
+      },
+    },
+    {
+      type: "input",
+      prop: "dataConfig",
+      label: "数据配置",
+      itemProps: {
+        type: "textarea",
+      },
+    },
+    {
+      type: "input",
+      prop: "extendConfig",
+      label: "扩展配置",
+      itemProps: {
+        type: "textarea",
+      },
+    },
+    {
+      type: "input",
       prop: "maintainUser",
       label: "维护人",
       itemProps: {
