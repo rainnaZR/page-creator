@@ -25,11 +25,12 @@ const onTopbarAction = (params: any) => {
 </script>
 
 <style lang="less" scoped>
+@import "../../../static/css/variables.less";
 .m-build {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #eef0f6;
+  background: @lighter-color;
   .main {
     flex: 1;
     display: flex;

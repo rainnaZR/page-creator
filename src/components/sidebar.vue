@@ -61,7 +61,7 @@ const onClickTab = (tab: any, indexArr: number[]) => {
   width: @sidebar-width;
   height: 100%;
   background: @base-color;
-  box-shadow: 0px 0px 6px 0px @light-color;
+  border-right: 1px solid @light-color;
   overflow-y: auto;
 }
 </style>

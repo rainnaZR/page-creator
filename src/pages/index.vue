@@ -40,7 +40,7 @@ const breadCrumbData = computed(() => ({
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #eef0f6;
+  background: @lighter-color;
   .g-main,
   .m-main,
   .m-box {
@@ -58,7 +58,7 @@ const breadCrumbData = computed(() => ({
     flex-direction: column;
     padding: 20px 20px 40px;
     background: @base-color;
-    box-shadow: 0px 0px 6px 0px @light-color;
+    border-right: 1px solid @light-color;
     overflow-y: scroll;
   }
 }

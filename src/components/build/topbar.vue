@@ -117,11 +117,12 @@ const onAction = (params: any) => {
 </script>
 
 <style lang="less" scoped>
+@import "../../static/css/variables.less";
 .m-build-topbar {
   display: flex;
-  padding: 5px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  padding: @topbar-padding * 0.5;
+  background: @base-color;
+  border-bottom: 1px solid @light-color;
   .actions {
     justify-content: flex-end;
   }
