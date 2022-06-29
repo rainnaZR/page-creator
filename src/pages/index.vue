@@ -37,29 +37,24 @@ const breadCrumbData = computed(() => ({
 <style lang="less" scoped>
 @import "../static/css/variables.less";
 .g-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
   background: @lighter-color;
-  .g-main,
-  .m-main,
-  .m-box {
-    flex: 1;
+  .g-main {
     display: flex;
     flex-direction: row;
-    box-sizing: border-box;
-    overflow: hidden;
+    height: calc(100vh - 56px);
   }
   .m-main {
-    flex-direction: column;
+    flex: 1;
     margin: 15px 20px;
   }
   .m-box {
+    display: flex;
     flex-direction: column;
-    padding: 20px 20px 40px;
+    height: calc(100% - 45px);
+    padding: 20px;
+    box-sizing: border-box;
     background: @base-color;
-    border-right: 1px solid @light-color;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 </style>

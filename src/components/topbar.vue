@@ -74,7 +74,7 @@ const onLoginOut = () => {
 .m-topbar {
   display: flex;
   align-items: center;
-  padding: @topbar-padding;
+  padding: @padding;
   box-sizing: border-box;
   background: @normal-color;
   color: fade(@base-color, 75);

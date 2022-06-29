@@ -16,6 +16,9 @@ const onPostXhr = (data: Model) => request.post('/material', data)
 // 修改
 const onPutXhr = (data: Model) => request.put('/material', data)
 
+// 所有内容
+const onGetAllListXhr = (data: Model) => request.get('/material/list/all', data)
+
 // 分类列表
 const onGetCategoryListXhr = (data: Model) => request.get('/material/category/list', data)
 
@@ -37,6 +40,7 @@ export {
     onGetDetailXhr,
     onPostXhr,
     onPutXhr,
+    onGetAllListXhr,
     onGetCategoryListXhr,
     onDeleteCategoryXhr,
     onGetCategoryDetailXhr,

@@ -6,7 +6,7 @@
     <!-- 主体 -->
     <div class="main">
       <!-- 边栏 -->
-      <Sidebar />
+      <Sidebar @onAction="onSidebarAction" />
       <!-- 视图 -->
       <Viewer />
       <!-- 工具栏 -->
@@ -21,6 +21,9 @@ import Sidebar from "@/build/sidebar.vue";
 
 const onTopbarAction = (params: any) => {
   alert(`${params.type}事件点击`);
+};
+const onSidebarAction = (params: any) => {
+  alert(`边栏${params.type}事件点击，组件名称为${params.item.title}`);
 };
 </script>
 

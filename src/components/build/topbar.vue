@@ -120,7 +120,7 @@ const onAction = (params: any) => {
 @import "../../static/css/variables.less";
 .m-build-topbar {
   display: flex;
-  padding: @topbar-padding * 0.5;
+  padding: @padding * 0.5;
   background: @base-color;
   border-bottom: 1px solid @light-color;
   .actions {
