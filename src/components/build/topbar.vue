@@ -121,6 +121,7 @@ const onAction = (params: any) => {
   display: flex;
   padding: 5px;
   background: #fff;
+  border-bottom: 1px solid #eee;
   .actions {
     justify-content: flex-end;
   }

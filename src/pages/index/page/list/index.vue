@@ -152,7 +152,7 @@ const data = reactive({
             content: "搭建",
             onClick: ({ row = {} }: any) => {
               const route = $router.resolve({
-                path: "/build",
+                path: "/base/build",
                 query: {
                   id: row.id,
                   isFullScreen: 1,
