@@ -53,6 +53,32 @@
               </ht-empty>
             </div>
           </template>
+
+          <!-- 模板库 -->
+          <template v-if="menu.type == 'template'">
+            <div v-if="state.templateList?.length" class="list">
+              <div
+                v-for="(item, itemIndex) in state.templateList"
+                :key="itemIndex"
+                class="item item-1 f-curp f-trans"
+                @click="
+                  onAction({
+                    type: menu.type,
+                    item,
+                    itemIndex,
+                  })
+                "
+              >
+                <ht-image :data="{ url: item.thumbImg }" />
+                <p class="f-mt10 f-tac f-fs12 f-txtell">{{ item.title }}</p>
+              </div>
+            </div>
+            <ht-empty v-else class="list" :data="{ hideImage: true }">
+              <template v-slot:content>
+                <p class="f-fs12">暂无模板数据</p>
+              </template>
+            </ht-empty>
+          </template>
         </div>
       </div>
     </div>
@@ -81,7 +107,8 @@ const onClickMenu = (type: string) => {
 };
 
 let state = reactive({
-  componentList: [],
+  componentList: [], // 组件库列表
+  templateList: [], // 模板库列表
 });
 const onGetComponentList = async () => {
   let res = await onGetAllListXhr();
@@ -136,6 +163,9 @@ const onAction = (params: any) => {
       padding: @padding * 0.5;
       box-sizing: border-box;
       border-right: 1px solid @light-color;
+      &-1 {
+        width: 100%;
+      }
       &:nth-child(3n) {
         border-right: none;
       }
