@@ -42,7 +42,7 @@
                     })
                   "
                 >
-                  <ht-image :data="{ url: item.thumbImg }" />
+                  <ht-image :data="{ src: item.thumbImg }" />
                   <p class="f-mt10 f-tac f-fs12 f-txtell">{{ item.title }}</p>
                 </div>
               </div>
@@ -69,7 +69,7 @@
                   })
                 "
               >
-                <ht-image :data="{ url: item.thumbImg }" />
+                <ht-image :data="{ src: item.thumbImg }" />
                 <p class="f-mt10 f-tac f-fs12 f-txtell">{{ item.title }}</p>
               </div>
             </div>

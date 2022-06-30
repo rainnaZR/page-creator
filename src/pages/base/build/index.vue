@@ -8,7 +8,7 @@
       <!-- 边栏 -->
       <Sidebar @onAction="onSidebarAction" />
       <!-- 视图 -->
-      <Viewer />
+      <Viewer class="f-f1" />
       <!-- 工具栏 -->
       <Toolbar />
     </div>
@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import Topbar from "@/build/topbar.vue";
 import Sidebar from "@/build/sidebar.vue";
+import Toolbar from "@/build/toolbar.vue";
 
 const onTopbarAction = (params: any) => {
   alert(`${params.type}事件点击`);
