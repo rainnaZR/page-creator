@@ -17,7 +17,7 @@
 
       <!-- 内容 -->
       <div class="content f-trans">
-        <div class="title">{{ menu.title }}</div>
+        <div class="title title-1">{{ menu.title }}</div>
         <div class="detail">
           <!-- 组件库 -->
           <template v-if="menu.type == 'component'">
@@ -146,10 +146,16 @@ const onAction = (params: any) => {
     }
     .title {
       padding: 0 @padding;
+      background: @base-color;
       border-bottom: 1px solid @light-color;
       font-weight: bold;
       line-height: 42px;
       text-align: left;
+      &-1 {
+        position: sticky;
+        left: 0;
+        top: 0;
+      }
     }
     .list {
       display: flex;
