@@ -51,6 +51,13 @@ const actionData = reactive({
       icon: "u-icon-error",
     },
     {
+      type: "setting",
+      btnType: "warning",
+      size: "mini",
+      content: "页面设置",
+      icon: "u-icon-edit",
+    },
+    {
       type: "preview",
       btnType: "warning",
       size: "mini",

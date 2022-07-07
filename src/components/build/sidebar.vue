@@ -143,6 +143,7 @@ const onAction = (params: any) => {
       opacity: 0;
       background: @base-color;
       overflow-y: scroll;
+      border-right: 1px solid @light-color;
     }
     .title {
       padding: 0 @padding;

@@ -10,21 +10,25 @@
       <!-- 视图 -->
       <Viewer class="f-f1" />
       <!-- 工具栏 -->
-      <Toolbar />
+      <Toolbar :config="state.currMaterial" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { reactive } from "vue";
 import Topbar from "@/build/topbar.vue";
 import Sidebar from "@/build/sidebar.vue";
 import Toolbar from "@/build/toolbar.vue";
 
+const state = reactive({
+  currMaterial: {},
+});
 const onTopbarAction = (params: any) => {
   alert(`${params.type}事件点击`);
 };
 const onSidebarAction = (params: any) => {
-  alert(`边栏${params.type}事件点击，组件名称为${params.item.title}`);
+  state.currMaterial = params.item;
 };
 </script>
 
