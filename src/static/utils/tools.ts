@@ -12,7 +12,7 @@ const onCompile = (content?: string) => {
     i?.slice(1)?.forEach((m: any) => {
       if(!m) return
       m = m.split('=')
-      data[m[0]] = m[1] || true
+      data[m[0]] = m[1]?.trim()?.replace(/\"/g,'')?.replace(/^"/g, '')?.replace(/"$/g, '') || true
     })
     return data
   })

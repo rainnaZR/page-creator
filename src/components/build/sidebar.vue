@@ -32,6 +32,10 @@
                   v-for="(item, itemIndex) in group.list"
                   :key="`${groupIndex}-${itemIndex}`"
                   class="item f-curp f-trans"
+                  :class="{
+                    'item-curr':
+                      state.currentActionId == `${menu.type}_${item.id}`,
+                  }"
                   @click="
                     onAction({
                       type: menu.type,
@@ -61,6 +65,10 @@
                 v-for="(item, itemIndex) in state.templateList"
                 :key="itemIndex"
                 class="item item-1 f-curp f-trans"
+                :class="{
+                  'item-curr':
+                    state.currentActionId == `${menu.type}_${item.id}`,
+                }"
                 @click="
                   onAction({
                     type: menu.type,
@@ -109,6 +117,7 @@ const onClickMenu = (type: string) => {
 let state = reactive({
   componentList: [], // 组件库列表
   templateList: [], // 模板库列表
+  currentActionId: "",
 });
 const onGetComponentList = async () => {
   let res = await onGetAllListXhr();
@@ -118,6 +127,8 @@ onGetComponentList();
 
 const emit = defineEmits(["onAction"]);
 const onAction = (params: any) => {
+  const { type, item } = params;
+  state.currentActionId = `${type}_${item.id}`;
   emit("onAction", params);
 };
 </script>
@@ -176,6 +187,7 @@ const onAction = (params: any) => {
       &:nth-child(3n) {
         border-right: none;
       }
+      &-curr,
       &:hover {
         box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.15);
       }

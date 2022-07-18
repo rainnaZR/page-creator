@@ -19,6 +19,7 @@
 import { reactive } from "vue";
 import Topbar from "@/build/topbar.vue";
 import Sidebar from "@/build/sidebar.vue";
+import Viewer from "@/build/viewer.vue";
 import Toolbar from "@/build/toolbar.vue";
 
 const state = reactive({
