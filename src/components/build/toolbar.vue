@@ -1,20 +1,40 @@
 <template>
   <div class="m-build-toolbar">
     <!-- 属性配置 -->
-    <div class="box" :class="{ 'box-spread': state.spreadType == 'property' }">
+    <div
+      class="box"
+      :class="{ 'box-spread': state.spreadType.includes('property') }"
+    >
       <div class="title f-curp f-fw1" @click="onTitleClick('property')">
         <div class="f-f1">属性配置</div>
         <ht-icon class="f-trans" :data="{ name: 'u-icon-arrowRight' }" />
       </div>
       <div class="content">
-        <ht-form-page :data="state.propertyFormData" />
+        <ht-form-page
+          ref="propertyFormPageRef"
+          :data="state.propertyFormData"
+        />
+      </div>
+    </div>
+
+    <!-- 样式配置 -->
+    <div
+      class="box"
+      :class="{ 'box-spread': state.spreadType.includes('style') }"
+    >
+      <div class="title f-curp f-fw1" @click="onTitleClick('style')">
+        <div class="f-f1">样式配置</div>
+        <ht-icon class="f-trans" :data="{ name: 'u-icon-arrowRight' }" />
+      </div>
+      <div class="content">
+        <ht-form-page ref="styleFormPageRef" :data="state.styleFormData" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from "vue";
+import { ref, reactive, watch } from "vue";
 
 const props = defineProps({
   config: {
@@ -26,9 +46,21 @@ const props = defineProps({
     default: () => {},
   },
 });
+const propertyFormPageRef = ref(null);
+const styleFormPageRef = ref(null);
 const state = reactive({
-  spreadType: "property",
+  spreadType: ["property"],
   propertyFormData: {
+    labelWidth: "80px",
+    labelPosition: "left",
+    size: "small",
+    model: {},
+    fields: [],
+    hideFormAction: true,
+  },
+  styleFormData: {
+    labelWidth: "80px",
+    labelPosition: "left",
     size: "small",
     model: {},
     fields: [],
@@ -37,21 +69,39 @@ const state = reactive({
 });
 
 const onTitleClick = (type: string) => {
-  state.spreadType = state.spreadType == type ? "" : type;
+  const index = state.spreadType.indexOf(type);
+  if (index == -1) {
+    state.spreadType.push(type);
+  } else {
+    state.spreadType.splice(index, 1);
+  }
 };
 
 const onLoad = (params: any) => {
-  const { propertyConfig } = params.config || {};
+  const { propertyConfig, styleConfig } = params.config || {};
   const data = params.data || {};
   // 属性配置
-  onLoadProperty({
+  onLoadData({
+    key: "propertyFormData",
     config: propertyConfig,
     data,
   });
+  // 样式配置
+  onLoadData({
+    key: "styleFormData",
+    config: styleConfig,
+    data,
+  });
 };
-const onLoadProperty = (params: any) => {
-  state.propertyFormData.fields = JSON.parse(params.config || "[]");
-  Object.assign(state.propertyFormData.model, params.data);
+
+const onLoadData = (params: any) => {
+  const { key, config, data } = params;
+
+  Object.assign(state[key].model, data);
+  state[key].fields = JSON.parse(config || "[]");
+  const formPageRef =
+    key == "propertyFormData" ? propertyFormPageRef : styleFormPageRef;
+  formPageRef.value?.onInitFormModel();
 };
 
 const emit = defineEmits(["update:propertyFormModel"]);
@@ -75,6 +125,7 @@ defineExpose({
 .m-build-toolbar {
   width: @sidebar-width;
   height: 100%;
+  overflow-y: auto;
   background: @base-color;
   border-left: 1px solid @light-color;
   .box {
