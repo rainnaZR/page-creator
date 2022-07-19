@@ -30,6 +30,18 @@
         <ht-form-page ref="styleFormPageRef" :data="state.styleFormData" />
       </div>
     </div>
+
+    <!-- 事件配置 -->
+    <div
+      class="box"
+      :class="{ 'box-spread': state.spreadType.includes('event') }"
+    >
+      <div class="title f-curp f-fw1" @click="onTitleClick('event')">
+        <div class="f-f1">事件配置</div>
+        <ht-icon class="f-trans" :data="{ name: 'u-icon-arrowRight' }" />
+      </div>
+      <div class="content"></div>
+    </div>
   </div>
 </template>
 
@@ -48,23 +60,21 @@ const props = defineProps({
 });
 const propertyFormPageRef = ref(null);
 const styleFormPageRef = ref(null);
+const defaultFormData = {
+  labelWidth: "80px",
+  labelPosition: "left",
+  size: "small",
+  model: {},
+  fields: [],
+  hideFormAction: true,
+};
 const state = reactive({
   spreadType: ["property"],
   propertyFormData: {
-    labelWidth: "80px",
-    labelPosition: "left",
-    size: "small",
-    model: {},
-    fields: [],
-    hideFormAction: true,
+    ...defaultFormData,
   },
   styleFormData: {
-    labelWidth: "80px",
-    labelPosition: "left",
-    size: "small",
-    model: {},
-    fields: [],
-    hideFormAction: true,
+    ...defaultFormData,
   },
 });
 
