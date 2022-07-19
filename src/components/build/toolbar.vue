@@ -1,12 +1,8 @@
 <template>
   <div class="m-build-toolbar">
     <!-- 属性配置 -->
-    <div class="box">
-      <div
-        class="title f-curp f-fw1"
-        :class="{ 'title-curr': state.spreadType == 'property' }"
-        @click="onTitleClick('property')"
-      >
+    <div class="box" :class="{ 'box-spread': state.spreadType == 'property' }">
+      <div class="title f-curp f-fw1" @click="onTitleClick('property')">
         <div class="f-f1">属性配置</div>
         <ht-icon class="f-trans" :data="{ name: 'u-icon-arrowRight' }" />
       </div>
@@ -18,8 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
-import { tools } from "~/static/utils";
+import { reactive, watch } from "vue";
 
 const props = defineProps({
   config: {
@@ -55,9 +50,20 @@ const onLoad = (params: any) => {
   });
 };
 const onLoadProperty = (params: any) => {
-  state.propertyFormData.fields = tools.onCompile(params.config);
-  state.propertyFormData.model = params.data;
+  state.propertyFormData.fields = JSON.parse(params.config || "[]");
+  Object.assign(state.propertyFormData.model, params.data);
 };
+
+const emit = defineEmits(["update:propertyFormModel"]);
+watch(
+  state.propertyFormData.model,
+  (value) => {
+    emit("update:propertyFormModel", value);
+  },
+  {
+    immediate: true,
+  }
+);
 
 defineExpose({
   onLoad,
@@ -71,19 +77,26 @@ defineExpose({
   height: 100%;
   background: @base-color;
   border-left: 1px solid @light-color;
-  .title {
-    display: flex;
-    align-items: center;
-    padding: @padding*0.8 @padding;
-    border-bottom: 1px solid @light-color;
-    &-curr {
+  .box {
+    .title {
+      display: flex;
+      align-items: center;
+      padding: @padding*0.8 @padding;
+      border-bottom: 1px solid @light-color;
+    }
+    .content {
+      height: 0;
+      overflow: hidden;
+    }
+    &-spread {
       .ht-icon {
         transform: rotate(90deg);
       }
+      .content {
+        height: auto;
+        padding: @padding;
+      }
     }
-  }
-  .content {
-    padding: @padding;
   }
 }
 </style>

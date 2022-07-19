@@ -10,7 +10,10 @@
       <!-- 视图 -->
       <Viewer ref="viewerRef" class="f-f1" />
       <!-- 工具栏 -->
-      <Toolbar ref="toolbarRef" />
+      <Toolbar
+        ref="toolbarRef"
+        @update:propertyFormModel="onUpdatePropertyFormModel"
+      />
     </div>
   </div>
 </template>
@@ -37,6 +40,11 @@ const onSidebarAction = (params: any) => {
     data: {},
   });
 };
+
+const onUpdatePropertyFormModel = (params: any) => {
+  // 视图区更新
+  viewerRef.value?.onLoad(params);
+};
 </script>
 
 <style lang="less" scoped>
@@ -44,6 +52,7 @@ const onSidebarAction = (params: any) => {
 .m-build {
   display: flex;
   flex-direction: column;
+  min-width: 1400px;
   height: 100vh;
   background: @lighter-color;
   .main {

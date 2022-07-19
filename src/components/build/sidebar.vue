@@ -152,7 +152,7 @@ const onAction = (params: any) => {
     padding: @padding 0;
     text-align: center;
     .content {
-      position: fixed;
+      position: absolute;
       left: @build-sidebar-width;
       top: @build-sidebar-width - 1;
       bottom: 0;
