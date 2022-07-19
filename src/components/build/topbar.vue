@@ -3,7 +3,7 @@
     <!-- logo -->
     <div v-if="config.showLogo" class="f-df f-aic f-curp" @click="onClickLogo">
       <ht-image :data="logoData" />
-      <h1 class="f-ml10 f-fs16">{{ logoData.alt }}</h1>
+      <h1 class="f-ml10 f-fs16 f-txtell">{{ logoData.alt }}</h1>
     </div>
 
     <!-- 行动点 -->

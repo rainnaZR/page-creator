@@ -52,7 +52,6 @@ const onUpdatePropertyFormModel = (params: any) => {
 .m-build {
   display: flex;
   flex-direction: column;
-  min-width: 1400px;
   height: 100vh;
   background: @lighter-color;
   .main {

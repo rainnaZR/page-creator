@@ -133,6 +133,7 @@ defineExpose({
       display: flex;
       align-items: center;
       padding: @padding*0.8 @padding;
+      border-top: 1px solid @light-color;
       border-bottom: 1px solid @light-color;
     }
     .content {
