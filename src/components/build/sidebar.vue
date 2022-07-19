@@ -94,10 +94,16 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, defineEmits } from "vue";
+import { reactive, ref } from "vue";
 import { onGetAllListXhr } from "~/service/material";
 
-const menuList = reactive([
+const props = defineProps({
+  config: {
+    type: Object,
+    default: () => {},
+  },
+});
+const menuList = [
   {
     type: "component",
     title: "组件库",
@@ -108,7 +114,7 @@ const menuList = reactive([
     title: "模板库",
     iconName: "u-icon-finance",
   },
-]);
+].filter((i) => props.config?.menus?.includes(i.type));
 const currMenuType = ref("");
 const onClickMenu = (type: string) => {
   currMenuType.value = currMenuType.value == type ? "" : type;

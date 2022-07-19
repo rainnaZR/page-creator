@@ -1,21 +1,19 @@
 <template>
   <div class="m-build-toolbar">
-    <!-- 样式配置 -->
+    <!-- 属性配置 -->
     <div class="box">
       <div
         class="title f-curp f-fw1"
-        :class="{ 'title-curr': state.spreadType == 'style' }"
-        @click="onTitleClick('style')"
+        :class="{ 'title-curr': state.spreadType == 'property' }"
+        @click="onTitleClick('property')"
       >
-        <div class="f-f1">样式配置</div>
+        <div class="f-f1">属性配置</div>
         <ht-icon class="f-trans" :data="{ name: 'u-icon-arrowRight' }" />
       </div>
       <div class="content">
-        <ht-form-page :data="styleFormData" @on-action="onAction" />
+        <ht-form-page :data="state.propertyFormData" />
       </div>
     </div>
-
-    <!-- 数据配置 -->
   </div>
 </template>
 
@@ -28,16 +26,24 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  data: {
+    type: Object,
+    default: () => {},
+  },
 });
 const state = reactive({
-  spreadType: "style",
+  spreadType: "property",
+  propertyFormData: {
+    size: "small",
+    model: {},
+    fields: [],
+  },
 });
-const styleFormData = computed(() => ({
-  fields: tools.onCompile(props.config?.styleConfig),
-}));
+
 const onTitleClick = (type: string) => {
   state.spreadType = state.spreadType == type ? "" : type;
 };
+const onLoad = (options: Object) => {};
 </script>
 
 <style lang="less" scoped>

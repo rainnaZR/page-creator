@@ -1,35 +1,41 @@
 <template>
   <div class="m-build">
     <!-- 顶栏 -->
-    <Topbar @onAction="onTopbarAction" />
+    <Topbar :config="DESIGNER.topbarConfig" @onAction="onTopbarAction" />
 
     <!-- 主体 -->
     <div class="main">
       <!-- 边栏 -->
-      <Sidebar @onAction="onSidebarAction" />
+      <Sidebar :config="DESIGNER.sidebarConfig" @onAction="onSidebarAction" />
       <!-- 视图 -->
-      <Viewer class="f-f1" />
+      <Viewer ref="viewerRef" class="f-f1" />
       <!-- 工具栏 -->
-      <Toolbar :config="state.currMaterial" />
+      <Toolbar ref="toolbarRef" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { ref } from "vue";
+import { DESIGNER } from "~/static/constants/designer";
 import Topbar from "@/build/topbar.vue";
 import Sidebar from "@/build/sidebar.vue";
 import Viewer from "@/build/viewer.vue";
 import Toolbar from "@/build/toolbar.vue";
 
-const state = reactive({
-  currMaterial: {},
-});
+const viewerRef = ref<HTMLElement | null>(null);
+const toolbarRef = ref<HTMLElement | null>(null);
+
 const onTopbarAction = (params: any) => {
   alert(`${params.type}事件点击`);
 };
+
 const onSidebarAction = (params: any) => {
-  state.currMaterial = params.item;
+  // 右侧工具栏设置更新
+  toolbarRef.value?.onLoad({
+    config: params.item,
+    data: {},
+  });
 };
 </script>
 
