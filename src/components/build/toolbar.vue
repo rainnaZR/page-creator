@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { reactive } from "vue";
 import { tools } from "~/static/utils";
 
 const props = defineProps({
@@ -37,13 +37,31 @@ const state = reactive({
     size: "small",
     model: {},
     fields: [],
+    hideFormAction: true,
   },
 });
 
 const onTitleClick = (type: string) => {
   state.spreadType = state.spreadType == type ? "" : type;
 };
-const onLoad = (options: Object) => {};
+
+const onLoad = (params: any) => {
+  const { propertyConfig } = params.config || {};
+  const data = params.data || {};
+  // 属性配置
+  onLoadProperty({
+    config: propertyConfig,
+    data,
+  });
+};
+const onLoadProperty = (params: any) => {
+  state.propertyFormData.fields = tools.onCompile(params.config);
+  state.propertyFormData.model = params.data;
+};
+
+defineExpose({
+  onLoad,
+});
 </script>
 
 <style lang="less" scoped>
