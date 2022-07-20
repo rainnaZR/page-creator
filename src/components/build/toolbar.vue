@@ -69,7 +69,7 @@ const defaultFormData = {
   hideFormAction: true,
 };
 const state = reactive({
-  spreadType: ["property"],
+  spreadType: ["property", "style", "event"],
   propertyFormData: {
     ...defaultFormData,
   },
